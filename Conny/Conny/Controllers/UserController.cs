@@ -4,14 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Conny.Data;
 using Conny.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Conny.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UserController : ControllerBase 
+    public class UserController : BaseApiController
     {
         private readonly DataContext _context;
 
@@ -21,6 +20,7 @@ namespace Conny.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
@@ -28,6 +28,7 @@ namespace Conny.Controllers
         }
         
         // api/users/{id}
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUsers(int id)
         {

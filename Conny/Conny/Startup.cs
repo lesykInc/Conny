@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Conny.Data;
+using Conny.Extensions;
+using Conny.Interfaces;
+using Conny.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace Conny
@@ -29,14 +35,11 @@ namespace Conny
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlServer(_configuration.GetConnectionString("ApplicationConnection"));
-            });
+            services.AddApplicationServices(_configuration);
             services.AddControllers();
-            services.AddScoped<DataContext>();
+            // services.AddScoped<DataContext>();
             services.AddCors();
+            services.AddIdentityServices(_configuration);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Conny", Version = "v1"}); });
         }
 
@@ -56,6 +59,8 @@ namespace Conny
 
             app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4004"));
 
+            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
