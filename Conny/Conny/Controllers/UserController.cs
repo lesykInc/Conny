@@ -29,6 +29,7 @@ namespace Conny.Controllers
         
         // api/users/{id}
         [Authorize]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUsers(int id)
         {
