@@ -2,7 +2,7 @@
  import { HttpClient } from "@angular/common/http";
  import { ReplaySubject } from "rxjs";
  import { map } from "rxjs/operators";
- import { User } from "../models/user";
+ import { User } from "../_models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,6 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('user');
-    this.currentUserSource.next(undefined);
+    this.currentUserSource.next(null!);
   }
 }
