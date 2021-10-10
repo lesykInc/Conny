@@ -32,14 +32,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm.value)
-    // this.accountService.register(this.model).subscribe(response => {
-    //   console.log(response);
-    //   this.cancel();
-    // }, error => {
-    //   console.log(error);
-    //   this.toastr.error(error.error);
-    // })
+    // console.log(this.registerForm.value)
+    this.accountService.register(this.model).subscribe(response => {
+      console.log(response);
+      this.cancel();
+    }, error => {
+      console.log(error);
+      this.toastr.error(error.error);
+    })
   }
 
   cancel() {
