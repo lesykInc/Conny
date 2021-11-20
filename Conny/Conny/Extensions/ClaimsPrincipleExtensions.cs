@@ -1,3 +1,4 @@
+using System;
 using System.Security.Claims;
 
 namespace Conny.Extensions
@@ -6,7 +7,12 @@ namespace Conny.Extensions
     {
         public static string GetUsername(this ClaimsPrincipal user)
         {
-            return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+            var claim = user.FindFirst(ClaimTypes.NameIdentifier);
+            return claim?.Value;
         }
     }
 }
