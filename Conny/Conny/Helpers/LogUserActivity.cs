@@ -16,10 +16,10 @@ namespace Conny.Helpers
             if (resultContext.HttpContext.User.Identity is { IsAuthenticated: false }) return;
 
             var userId = resultContext.HttpContext.User.GetUserId();
-            var repo = resultContext.HttpContext.RequestServices.GetService<IUserRepository>();
-            var user = await repo.GetUserByIdAsync(userId);
+            var uow = resultContext.HttpContext.RequestServices.GetService<IUnitOfWork>();
+            var user = await uow.UserRepository.GetUserByIdAsync(userId);
             user.LastActive = DateTime.Now;
-            await repo.SavaAllAsync();
+            await uow.Complete();
         }
     }
 }

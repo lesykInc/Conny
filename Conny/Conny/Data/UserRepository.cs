@@ -30,11 +30,6 @@ namespace Conny.Data
             _context.Entry(user).State = EntityState.Modified;
         }
 
-        public async Task<bool> SavaAllAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
-
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _context.Users
