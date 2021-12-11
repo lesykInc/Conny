@@ -20,6 +20,24 @@ Finally, install packages on a client project:
 npm install -g @angular/cli
 ```
 
+## Launch a Project
+
+API:
+Going to C:\your-project-folder\Conny\Conny> and run this command:  
+```bash
+dotnet run
+```
+To stop the server: combination CTRL+Q
+
+Client:
+Going to C:\Users\oleks\RiderProjects\Conny\Conny\client> and run this command:
+```bash
+npm start
+```
+By project setting, the client opens on 4004 port automatically (http://localhost:4004/)
+To stop the client: combination CTRL+X
+
+
 ## Additional
 [Issue tracking system](https://kanbanflow.com/board/3ErBXyD)
 
