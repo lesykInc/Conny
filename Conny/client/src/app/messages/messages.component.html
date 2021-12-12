@@ -35,22 +35,22 @@
       <td>
         <div *ngIf="container === 'Outbox'">
           <img
-            class="img-circle rounded-circle mr-2"
+            class="img-circle rounded-circle me-2"
             src="{{message.recipientPhotoUrl || './assets/user.png'}}"
             alt="{{message.recipientUsername}}">
           <strong>{{message.recipientUsername | titlecase}}</strong>
         </div>
         <div *ngIf="container !== 'Outbox'">
           <img
-            class="img-circle rounded-circle mr-2"
-            src="{{message.senderPhotoUrl || './assets./user.png'}}"
+            class="img-circle rounded-circle me-2"
+            src="{{message.senderPhotoUrl || './assets/user.png'}}"
             alt="{{message.senderUsername}}">
           <strong>{{message.senderUsername | titlecase}}</strong>
         </div>
       </td>
       <td>{{message.messageSent | timeago}}</td>
       <td>
-        <button (click)="deleteMessage(message.id); $event.stopPropagation()" class='btn btn-danger'>Delete</button>
+        <button (click)="deleteMessage(message.id); $event.stopPropagation()" class='btn btn-outline-danger'>Delete</button>
       </td>
     </tr>
   </table>
