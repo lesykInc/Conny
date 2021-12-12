@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Conny.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211211200518_GroupsAdded")]
-    partial class GroupsAdded
+    [Migration("20211211221835_IsApprovedFieldToPhotoAdded")]
+    partial class IsApprovedFieldToPhotoAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Conny.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Conny.Entities.AppRole", b =>
+            modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Conny.Entities.AppUser", b =>
+            modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,7 +147,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Conny.Entities.AppUserRole", b =>
+            modelBuilder.Entity("API.Entities.AppUserRole", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -162,7 +162,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Connection", b =>
+            modelBuilder.Entity("API.Entities.Connection", b =>
                 {
                     b.Property<string>("ConnectionId")
                         .HasColumnType("nvarchar(450)");
@@ -180,7 +180,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("Connections");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Group", b =>
+            modelBuilder.Entity("API.Entities.Group", b =>
                 {
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
@@ -190,7 +190,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Message", b =>
+            modelBuilder.Entity("API.Entities.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Photo", b =>
+            modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -242,6 +242,9 @@ namespace Conny.Data.Migrations
 
                     b.Property<int>("AppUserId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
@@ -259,7 +262,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Conny.Entities.UserLike", b =>
+            modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
                     b.Property<int>("SourceUserId")
                         .HasColumnType("int");
@@ -360,15 +363,15 @@ namespace Conny.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Conny.Entities.AppUserRole", b =>
+            modelBuilder.Entity("API.Entities.AppUserRole", b =>
                 {
-                    b.HasOne("Conny.Entities.AppRole", "Role")
+                    b.HasOne("API.Entities.AppRole", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Conny.Entities.AppUser", "User")
+                    b.HasOne("API.Entities.AppUser", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -379,23 +382,23 @@ namespace Conny.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Connection", b =>
+            modelBuilder.Entity("API.Entities.Connection", b =>
                 {
-                    b.HasOne("Conny.Entities.Group", null)
+                    b.HasOne("API.Entities.Group", null)
                         .WithMany("Connections")
                         .HasForeignKey("GroupName")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Conny.Entities.Message", b =>
+            modelBuilder.Entity("API.Entities.Message", b =>
                 {
-                    b.HasOne("Conny.Entities.AppUser", "Recipient")
+                    b.HasOne("API.Entities.AppUser", "Recipient")
                         .WithMany("MessagesReceived")
                         .HasForeignKey("RecipientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Conny.Entities.AppUser", "Sender")
+                    b.HasOne("API.Entities.AppUser", "Sender")
                         .WithMany("MessagesSent")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -406,9 +409,9 @@ namespace Conny.Data.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Photo", b =>
+            modelBuilder.Entity("API.Entities.Photo", b =>
                 {
-                    b.HasOne("Conny.Entities.AppUser", "AppUser")
+                    b.HasOne("API.Entities.AppUser", "AppUser")
                         .WithMany("Photos")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -417,15 +420,15 @@ namespace Conny.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Conny.Entities.UserLike", b =>
+            modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
-                    b.HasOne("Conny.Entities.AppUser", "LikedUser")
+                    b.HasOne("API.Entities.AppUser", "LikedUser")
                         .WithMany("LikedByUsers")
                         .HasForeignKey("LikedUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Conny.Entities.AppUser", "SourceUser")
+                    b.HasOne("API.Entities.AppUser", "SourceUser")
                         .WithMany("LikedUsers")
                         .HasForeignKey("SourceUserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -438,7 +441,7 @@ namespace Conny.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Conny.Entities.AppRole", null)
+                    b.HasOne("API.Entities.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -447,7 +450,7 @@ namespace Conny.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("Conny.Entities.AppUser", null)
+                    b.HasOne("API.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -456,7 +459,7 @@ namespace Conny.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("Conny.Entities.AppUser", null)
+                    b.HasOne("API.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -465,19 +468,19 @@ namespace Conny.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("Conny.Entities.AppUser", null)
+                    b.HasOne("API.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Conny.Entities.AppRole", b =>
+            modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("Conny.Entities.AppUser", b =>
+            modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Navigation("LikedByUsers");
 
@@ -492,7 +495,7 @@ namespace Conny.Data.Migrations
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Group", b =>
+            modelBuilder.Entity("API.Entities.Group", b =>
                 {
                     b.Navigation("Connections");
                 });

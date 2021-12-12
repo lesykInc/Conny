@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "../../_models/user";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-test-errors',
@@ -9,7 +10,7 @@ import {User} from "../../_models/user";
 })
 export class TestErrorsComponent implements OnInit {
 
-  baseUrl = 'https:/localhost:44358/api/';
+  baseUrl = environment.apiUrl;
   validationErrors: string[] = [];
 
   constructor(private http: HttpClient) { }

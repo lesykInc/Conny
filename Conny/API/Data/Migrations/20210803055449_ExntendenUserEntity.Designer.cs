@@ -21,7 +21,7 @@ namespace Conny.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Conny.Entities.AppUser", b =>
+            modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace Conny.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Photo", b =>
+            modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,9 +98,9 @@ namespace Conny.Data.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Conny.Entities.Photo", b =>
+            modelBuilder.Entity("API.Entities.Photo", b =>
                 {
-                    b.HasOne("Conny.Entities.AppUser", "AppUser")
+                    b.HasOne("API.Entities.AppUser", "AppUser")
                         .WithMany("Photos")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -109,7 +109,7 @@ namespace Conny.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Conny.Entities.AppUser", b =>
+            modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Navigation("Photos");
                 });
