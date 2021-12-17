@@ -2,6 +2,8 @@
 
 Conny - the simplest web project based on .Net/Angular :)
 
+--> https://conny-app.herokuapp.com/messages
+
 ## Installation
 
 You need to make sure you have:
