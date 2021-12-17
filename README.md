@@ -2,7 +2,7 @@
 
 Conny - the simplest web project based on .Net/Angular :)
 
---> https://conny-app.herokuapp.com/messages
+--> https://conny-app.herokuapp.com
 
 ## Installation
 
