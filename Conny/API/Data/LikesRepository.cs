@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Conny.DTOs;
@@ -7,7 +6,6 @@ using Conny.Extensions;
 using Conny.Helpers;
 using Conny.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Conny.Data
 {

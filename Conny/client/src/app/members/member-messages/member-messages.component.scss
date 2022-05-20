@@ -21,16 +21,20 @@
 }
 
 .chat::-webkit-scrollbar-thumb {
-  background-color: #e95420;
+  background-color: #344cc9;
   border-radius: 100px;
 }
 
 .chat li {
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px dotted #B3A9A9;
 }
 
 .rounded-circle {
   max-height: 50px;
+}
+
+.my-btn {
+  background-color: #344cc9;
+  border-color: #344cc9;
 }

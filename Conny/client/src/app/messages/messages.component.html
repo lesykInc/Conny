@@ -1,14 +1,14 @@
 <div class="row mb-4">
   <div class="btn-group" name='container'>
-    <button class="btn btn-primary" btnRadio='Unread' [(ngModel)]="container"
+    <button class="btn btn-primary" style="background-color: #344cc9; border-color: white" btnRadio='Unread' [(ngModel)]="container"
             (click)="loadMessages()">
       <i class="fa fa-envelope"></i> Unread
     </button>
-    <button class="btn btn-primary" btnRadio='Inbox' [(ngModel)]="container"
+    <button class="btn btn-primary" style="background-color: #344cc9; border-color: white"  btnRadio='Inbox' [(ngModel)]="container"
             (click)="loadMessages()">
       <i class="fa fa-envelope-open"></i> Inbox
     </button>
-    <button class="btn btn-primary" btnRadio='Outbox' [(ngModel)]="container"
+    <button class="btn btn-primary" style="background-color: #344cc9; border-color: white"  btnRadio='Outbox' [(ngModel)]="container"
             (click)="loadMessages()">
       <i class="fa fa-paper-plane"></i> Outbox
     </button>

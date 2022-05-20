@@ -1,10 +1,6 @@
 using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Conny.Data;
 using Conny.DTOs;
 using Conny.Entities;
 using Conny.Interfaces;

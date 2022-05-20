@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using Conny.DTOs;
-using Conny.Entities;
 using Conny.Extensions;
 using Conny.Helpers;
 using Conny.Interfaces;
@@ -14,12 +12,10 @@ namespace Conny.Controllers
    [Authorize]
     public class MessagesController : BaseApiController
     {
-        private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
-        public MessagesController(IMapper mapper, IUnitOfWork unitOfWork)
+        public MessagesController(IUnitOfWork unitOfWork)
         {
-            _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 

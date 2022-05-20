@@ -16,7 +16,7 @@
             <div class="header">
               <small class="text-muted">
                 <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
-                <span class="text-danger" *ngIf="!message.dateRead && message.senderUsername !== username">(unread)</span>
+                <span class="text-danger" *ngIf="!message.dateRead && message.senderUsername !== username" style="color: red!important;">(unread)</span>
                 <span class="text-success" *ngIf="message.dateRead && message.senderUsername !== username">(read {{message.dateRead | timeago}})</span>
               </small>
             </div>
@@ -38,7 +38,7 @@
           class="form-control input-sm"
           placeholder="Send a private message">
         <div class="input-group-append">
-          <button [disabled]="!messageForm.valid || loading" class="btn btn-primary ms-2" type="submit">
+          <button [disabled]="!messageForm.valid || loading" class="btn btn-primary ms-2 my-btn" type="submit">
             Send<i *ngIf="loading" class="fa fa-spinner fa spin"></i>
           </button>
         </div>

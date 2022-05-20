@@ -3,7 +3,7 @@
     <img src="{{photo.url}}" alt="{{photo.url}}" class="img-thumbnail p-1"
          [class.not-approved]="!photo.isApproved">
 
-    <div class="text-center img-text" *ngIf="photo.isMain || !photo.isApproved">
+    <div class="text-center img-text" *ngIf="!photo.isApproved">
       <span class="text-danger">Awaiting approval</span>
     </div>
     <div class="text-center">
@@ -12,8 +12,9 @@
         (click)="setMainPhoto(photo)"
         [ngClass]='photo.isMain ? "btn-success active" : "btn-outline-success"'
         class="btn btn-sm"
+        style="margin-left: -47px; margin-right: 10px;"
       >Main</button>
-      <button [disabled]="photo.isMain" (click)="deletePhoto(photo.id)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+      <button [disabled]="photo.isMain" (click)="deletePhoto(photo.id)" class="btn btn-sm btn-danger" style="width: 47px;"><i class="fa fa-trash"></i></button>
     </div>
   </div>
 </div>
